@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuotaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::group(['middleware' => 'microservice_auth',
-//], static function ($router) {
-//
-//    Route::group(['prefix' => 'quotas'
-//    ], static function ($router) {
-//        Route::get('', static function ($router) {
-//            return auth()->user();
-//        });
-//    });
-//
-//});
+Route::group(['middleware' => 'microservice_auth',
+], static function ($router) {
 
-Route::middleware('microservice_auth')->post('/quotas', static function () {
-    return auth()->user();
+    Route::group(['prefix' => 'quotas'
+    ], static function ($router) {
+        Route::post('', [QuotaController::class, 'store']);
+        Route::put('', [QuotaController::class, 'update']);
+    });
+
 });
+
+//Route::middleware('microservice_auth')->post('/quotas', static function () {
+//    return auth()->user();
+//});
