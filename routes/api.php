@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::group(['middleware' => 'microservice_auth',
+//], static function ($router) {
+//
+//    Route::group(['prefix' => 'quotas'
+//    ], static function ($router) {
+//        Route::get('', static function ($router) {
+//            return auth()->user();
+//        });
+//    });
+//
+//});
+
+Route::middleware('microservice_auth')->post('/quotas', static function () {
+    return auth()->user();
 });
