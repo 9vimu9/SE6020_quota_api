@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'microservice_auth',
+Route::group(['middleware' => 'NoUserIsAllowed',
 ], static function ($router) {
 
     Route::group(['prefix' => 'quotas'
     ], static function ($router) {
-        Route::post('', [QuotaController::class, 'store']);
+        Route::post('', [QuotaController::class, 'store'])->middleware("NoFuelCenterIsAllowed");
         Route::put('', [QuotaController::class, 'update']);
     });
 
