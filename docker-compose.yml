@@ -5,7 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfiles/mariadb/Dockerfile
-        #    image: 9wimu9/auth-app-mariadb-bitnami-cloudformation
+        image: 9wimu9/quote-api-mariadb
         environment:
             MARIADB_ROOT_PASSWORD: root
         healthcheck:
@@ -14,27 +14,28 @@ services:
             timeout: 5s
             retries: 6
         ports:
-            - '3308:3306'
+            - '3306:3306'
 
     myapp:
         build:
             context: .
             dockerfile: Dockerfiles/php/Dockerfile
-        #    image: 9wimu9/auth-app-bitnami-formation-cloudformation
+        image: 9wimu9/quote-api-myapp
         ports:
-            - '8001:8000'
-        volumes:
-            - './:/app'
+            - '8000:8000'
+#        volumes:
+#            - './:/app'
         depends_on:
             - mariadb
-
+            -
+#quota-LoadB-D4GJJAQLW9EN-d3ba1e5094664f45.elb.us-east-1.amazonaws.com:8000
 
 #        #https://github.com/aws/aws-cli/issues/6242#issuecomment-1079214960
-#      aws ecs update-service --cluster auth-api --service auth-api-MyappService-HLgLJ0GHOtRu --region us-east-1 --enable-execute-command --force-new-deployment
+#      aws ecs update-service --cluster quota-api --service quota-api-MyappService-ehtrFhf7GkEG --region us-east-1 --enable-execute-command --force-new-deployment
 #    aws ecs execute-command  \
 #    --region us-east-1 \
-#    --cluster auth-api \
-#    --task f574670275414f0aa173b493cfb4ad51 \
+#    --cluster quota-api \
+#    --task a7b3e586c42644f683234da05d7c736c \
 #    --container  myapp \
 #    --command "/bin/bash" \
 #    --interactive
