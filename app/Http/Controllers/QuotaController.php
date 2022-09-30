@@ -23,7 +23,7 @@ class QuotaController extends Controller
         try {
             $newQuota = $request->get("quota");
             $quota = Quota::where("vehicle_id", $request->get("vehicle_id"))->firstOrFail();
-            if (auth()->user()->role === config("app.roles.fuel_center") && $quota->quota < $newQuota) {
+            if (auth()->user()->role === config("app.roles.fuel_station") && $quota->quota < $newQuota) {
                 return response()->json(["error" => "fuel centers are not allowed to increase fuel quota"], 422);
             }
             $quota->update([
