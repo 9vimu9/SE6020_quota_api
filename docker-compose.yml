@@ -5,7 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfiles/mariadb/Dockerfile
-        image: 9wimu9/quote-api-mariadb
+        image: 9wimu9/quote-api-mariadb:latest
         environment:
             MARIADB_ROOT_PASSWORD: root
         healthcheck:
@@ -20,14 +20,13 @@ services:
         build:
             context: .
             dockerfile: Dockerfiles/php/Dockerfile
-        image: 9wimu9/quote-api-myapp
+        image: 9wimu9/quote-api-myapp:latest
         ports:
             - '8000:8000'
 #        volumes:
 #            - './:/app'
         depends_on:
             - mariadb
-            -
 #quota-LoadB-D4GJJAQLW9EN-d3ba1e5094664f45.elb.us-east-1.amazonaws.com:8000
 
 #        #https://github.com/aws/aws-cli/issues/6242#issuecomment-1079214960
