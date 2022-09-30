@@ -34,7 +34,7 @@ services:
 #    aws ecs execute-command  \
 #    --region us-east-1 \
 #    --cluster quota-api \
-#    --task a7b3e586c42644f683234da05d7c736c \
+#    --task 962459db7ac742ae93c3a4aaa696640b \
 #    --container  myapp \
 #    --command "/bin/bash" \
 #    --interactive
