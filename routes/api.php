@@ -19,7 +19,6 @@ Route::group(['middleware' => 'NoUserIsAllowed',
 
     Route::group(['prefix' => 'quotas'
     ], static function ($router) {
-        Route::post('', [QuotaController::class, 'store'])->middleware("NoFuelCenterIsAllowed");
         Route::put('', [QuotaController::class, 'update']);
     });
 

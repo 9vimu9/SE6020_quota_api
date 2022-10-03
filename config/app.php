@@ -9,6 +9,7 @@ return [
         "user" => 2
     ],
 
+    'initial_quota' => env('INITIAL_QUOTA',null),
     /*
     |--------------------------------------------------------------------------
     | Application Name
