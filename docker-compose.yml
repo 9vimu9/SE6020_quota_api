@@ -5,7 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfiles/mariadb/Dockerfile
-        image: 9wimu9/quote-api-mariadb:latest
+        image: 9wimu9/quotas-api-mariadb:latest
         environment:
             MARIADB_ROOT_PASSWORD: root
         healthcheck:
@@ -16,11 +16,11 @@ services:
         ports:
             - '3306:3306'
 
-    myapp:
+    laravel:
         build:
             context: .
             dockerfile: Dockerfiles/php/Dockerfile
-        image: 9wimu9/quote-api-myapp:latest
+        image: 9wimu9/quotas-api-laravel:latest
         ports:
             - '8000:8000'
 #        volumes:
@@ -34,8 +34,8 @@ services:
 #    aws ecs execute-command  \
 #    --region us-east-1 \
 #    --cluster quota-api \
-#    --task 238f0f82a7294b1bb562c0c638668e39 \
-#    --container  myapp \
+#    --task c752a886a5db4a91aedc7eab45b3abb1 \
+#    --container  laravel \
 #    --command "/bin/bash" \
 #    --interactive
 
